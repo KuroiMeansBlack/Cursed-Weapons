@@ -19,7 +19,6 @@ namespace exl::hook::impl {
             _HOOK_STATIC_CALLBACK_ASSERT();
 
             static constinit CallbackFuncPtr<> s_FnPtr = nullptr;
-
             return s_FnPtr;
         }
 

@@ -9,7 +9,7 @@ extern "C" {
 
 extern void *malloc(size_t size);
 extern void *aligned_alloc( size_t alignment, size_t size );
-
+extern void free(void* __ptr__);// 0x0074aec0
 };
 
 #endif

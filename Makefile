@@ -17,8 +17,9 @@ SD_OUT := atmosphere/contents/$(PROGRAM_ID)/exefs
 
 # Set load kind specific variables.
 ifeq ($(LOAD_KIND), Module)
+    Headerspath = /home/kuroi/Clones/FrameWorks/Cursed_Weapon/source/program/Headers
     LOAD_KIND_ENUM := 2
-    BINARY_NAME := subsdk9 # TODO: support subsdkX?
+    BINARY_NAME := subsdk8 # TODO: support subsdkX?
     SPECS_NAME := module.specs
     MK_NAME := module.mk
 else ifeq ($(LOAD_KIND), AsRtld)
@@ -33,9 +34,11 @@ endif
 .PHONY: clean all
 
 # Built internal C flags variable.
-EXL_CFLAGS   := $(C_FLAGS) -DEXL_LOAD_KIND=$(LOAD_KIND) -DEXL_LOAD_KIND_ENUM=$(LOAD_KIND_ENUM) -DEXL_PROGRAM_ID=0x$(PROGRAM_ID)
+EXL_CFLAGS   := $(C_FLAGS) -DEXL_LOAD_KIND=$(LOAD_KIND) -DEXL_LOAD_KIND_ENUM=$(LOAD_KIND_ENUM) -DEXL_PROGRAM_ID=0x$(PROGRAM_ID) -DNNSDK=1 -I$(Headerspath)
 EXL_CXXFLAGS := $(CXX_FLAGS)
+LDFLAGS += -T your_linker_script.ld -L$(CURDIR)/misc
 
+$(shell find ${CURDIR}/symbols -type f -name '*.sym' -exec cat {} + > ${CURDIR}/misc/syms.ld)
 # Export all of our variables to sub-makes and sub-processes.
 export
 

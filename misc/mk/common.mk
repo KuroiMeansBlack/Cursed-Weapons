@@ -40,6 +40,7 @@ CFLAGS	:=	-g -Wall -Werror -O3 \
 			-ffunction-sections \
 			-Wno-format-zero-length \
 			-fdata-sections \
+			-fpermissive\
 			$(ARCH) \
 			$(DEFINES)
 

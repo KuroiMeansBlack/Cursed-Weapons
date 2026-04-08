@@ -68,6 +68,9 @@ namespace nn::os {
             constexpr bool operator<=(const Tick &rhs) const {
                 return !(*this > rhs);
             }
+            operator s64()const{
+                GetInt64Value();
+            }
     };
-
+    //extern "C" Tick GetSystemTick() asm("_ZN2nn2os13GetSystemTickEv");
 }

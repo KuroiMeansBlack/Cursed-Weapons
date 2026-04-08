@@ -12,9 +12,11 @@ PHDRS
 
 SECTIONS
 {
+  INCLUDE "/home/kuroi/Clones/FrameWorks/Cursed_Weapon/misc/syms.ld"
   PROVIDE_HIDDEN(__start__ = 0x0);
   . = __start__;
   __code_start__ = .;
+  __main_start = 0x4dd4000; 
 
   /* App code */
   .text : {

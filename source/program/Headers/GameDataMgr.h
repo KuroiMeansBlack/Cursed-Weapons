@@ -1,0 +1,112 @@
+#pragma once
+#include <sead/thread/seadDelegateThread.h>
+#include "GameDatas/SavableGameData.h"
+struct SaveDirectory{
+    sead::FixedSafeString<64> mDirectory;
+    uint	mSaveDataSize;
+    uint	mSaveDataOffsetPos;
+    uint	mSaveDataOffsetRegionSize;
+    bool unk,unk2,unk3,unk4;
+    void* mpSaveFile;
+    void* mpBuffer;
+    void* unkptr;
+    uint8_t mFlags;
+    uint8_t isSerialized;
+    uint8_t unk5,unk6,unk7,unk8,unk9, unk10;
+};
+struct StructMember{
+    uint mHash;
+    uint mValue;
+};
+struct StructMemberArray{
+    StructMember* mpArray;
+    int Mcount;
+    int mMax;
+};
+struct GameDataStruct{
+    void* mvTable;
+    StructMemberArray mMemberArray;
+    uint mArraySize;  
+};
+
+struct GameDataMgr{
+    void* mVtable;
+    SavableGameDataStore<GameDataBool,uint8_t,uint>                         mBoolStore;
+    SavableGameDataStore<GameDataBoolArray,BoolArray,ArrayChangeLog>        mBoolArrayStore;
+    SavableGameDataStore<GameDataInt,int,uint>                              mIntStore;
+    SavableGameDataStore<GameDataIntArr,IntArray,ArrayChangeLog>            mIntArrayStore;
+    SavableGameDataStore<GameDataFloat,float,uint>                          mFloatStore;                    
+    SavableGameDataStore<GameDataFloatArray,FloatArray,ArrayChangeLog>      mFloatArrStore;
+    SavableGameDataStore<GameDataEnum,uint,uint>                            mEnumStore;
+    SavableGameDataStore<GameDataEnumArray,EnumArray,ArrayChangeLog>        mEnumArrStore;
+    SavableGameDataStore<GameDataVector2,sead::Vector2f,uint>                mVector2Store;
+    SavableGameDataStore<GameDataVector2Array,Vector2Array, ArrayChangeLog> mVector2ArrayStore;
+    SavableGameDataStore<GameDataVector3,sead::Vector3f,uint>               mVector3Store;
+    SavableGameDataStore<GameDataVector3fArray,Vector3Array,ArrayChangeLog>mVector3ArrayStore;
+    SavableGameDataStore<GameDataString16,String16,uint>mString16Store;
+    SavableGameDataStore<GameDataString16Array,String16Array,ArrayChangeLog>String16ArrayStore;
+    SavableGameDataStore<GameDataString32,String32,uint>mString32Store;
+    SavableGameDataStore<GameDataString32Array,String32Array,ArrayChangeLog>mString32ArrayStore;
+    SavableGameDataStore<GameDataString64,String64,uint>                    mString64Store;
+    SavableGameDataStore<GameDataString64Array,String64Array,ArrayChangeLog>mString64ArrayStore;
+    SavableGameDataStore<GameDataBinary,Binary,uint>                        mBinaryStore;
+    SavableGameDataStore<GameDataBinaryArray,BinaryArr,ArrayChangeLog>mBinaryArrayStore;
+    SavableGameDataStore<GameDataUint,Uint,uint>mUintStore;
+    SavableGameDataStore<GameDataUintArray,UintArr,ArrayChangeLog>mUintArrayStore;
+    SavableGameDataStore<GameDataInt64,Int64,uint>mInt64Store;
+    SavableGameDataStore<GameDataInt64Array,Int64,ArrayChangeLog>mInt64ArrStore;
+    SavableGameDataStore<GameDataUint64,Uint64,uint>mUint64Store;
+    SavableGameDataStore<GameDataUint64Array,Uint64Arr,ArrayChangeLog>Uint64ArrayStore;
+    SavableGameDataStore<GameDataWString16,WString16,uint>Wstring16Store;
+    SavableGameDataStore<GameDataWString16Array,WString16Array,ArrayChangeLog>Wstring16ArrayStore;
+    SavableGameDataStore<GameDataWString32,WString32,uint>Wstring32Store;
+    SavableGameDataStore<GameDataWString32Array,WString32Array,ArrayChangeLog>string32ArrayStore;
+    SavableGameDataStore<GameDataWString64,WString64,uint>Wstring64store;
+    SavableGameDataStore<GameDataWString64Array,WString64Array,ArrayChangeLog>Wstring64Arraystore;
+    GameDataStore<GameDataStruct>mStructStore;
+    GameDataStore<GameDataBoolExp>mBoolExpStore;
+    SavableGameDataStore<GameDataBool64bitKey,Bool64bitKey,u64>mBool64bitKeyStore;
+    uint mFormatVersion;
+    uint mFormatVersionSave;
+    uint mResetMask;
+    bool unk,unk2,unk3,unk4;
+    Buffer_<SaveDirectory>mSaveDirectoryArray;
+    Buffer_<uint> mSaveDirectoryHashArray;
+    sead::DelegateThread* mpGameDataMgrThread;
+    void* mThreadDelegate[3];
+    uint mThreadAffinity;
+    uint mSaveDataState;
+    bool mIsNeedUpdateSaveData;
+    uint8_t unk01,unk02,unk03;
+    bool mIsChangeGmdThreadPrio;
+    uint8_t unk04,unk05,unk06;
+    sead::IDisposer mStaticDisposer;
+
+};
+
+
+
+// constexpr ptrdiff_t size = sizeof(GameDataMgr);
+
+
+struct StructHandle{
+    GameDataStruct* mpStruct;
+    int mIndex;
+    bool mIsArray;
+    bool undefined, undefined1,undefined2;
+};
+static_assert(sizeof(StructHandle)== 0x10);
+#define STRUCTID 0x25efa387
+
+GameDataMgr** GameDataMgrInstance = nullptr;//0x04721b98
+
+
+
+using getStructStructByIndexFunc = bool (GameDataMgr*,long*, StructHandle*,uint, int);
+getStructStructByIndexFunc* getStructStructByIndex = nullptr;
+
+using getStructString64Func = bool (GameDataMgr*, const char**, long*, long);
+getStructString64Func* getStructString64 = nullptr;
+
+using SetStructString64Func = void(GameDataMgr*,const char**, int*, long);
+SetStructString64Func* SetStructString64 = nullptr; //0x00c12e4c

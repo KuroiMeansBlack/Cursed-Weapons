@@ -9,7 +9,7 @@
         
 # Credits
  - Thankyou [Dt](https://github.com/dt-12345) for the symbols,
- - thankyou [Shadow](https://github.com/shadowninja108/) for making this possible.
+ - Thankyou [Shadow](https://github.com/shadowninja108/) for exlaunch.
 
 
 

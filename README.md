@@ -13,6 +13,9 @@
 
 
 
+# ThirdParty 
+[sead](https://github.com/open-ead/sead)
+
 
 # exlaunch
 A framework for injecting C/C++ code into Nintendo Switch applications/applet/sysmodules.

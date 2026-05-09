@@ -1,4 +1,4 @@
-# A WIP tears of the kingdom mod which every weapons that the player brokes trigger a curse on the player
+# A WIP tears of the kingdom mod which every weapons that the player brokes trigger a random curse on the player
 ## Curses : 
          -Player explodes
          -Player get hit by a thunder
@@ -7,7 +7,9 @@
          -Player get frozen
          
         
-
+# Credits :
+ - Thankyou [Dt](https://github.com/dt-12345) for the symbols,
+ - thankyou [Shadow](https://github.com/shadowninja108/) for making this possible.
 
 
 

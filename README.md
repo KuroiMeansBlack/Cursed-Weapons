@@ -1,9 +1,10 @@
 # A WIP tears of the kingdom mod which every weapons that the player brokes trigger a curse on the player
-Curses : Player explodes
-         Player get hit by a thunder
-         Player lose 1 heart
-         One random weapon(bow, shield or melee weapon) get removed from the inventory
-         Player get frozen
+## Curses : 
+         -Player explodes
+         -Player get hit by a thunder
+         -Player lose 1 heart
+         -One random weapon(bow, shield or melee weapon) get removed from the inventory
+         -Player get frozen
          
         
 

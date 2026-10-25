@@ -8,7 +8,7 @@
          
         
 # Credits
- - Thankyou [Dt](https://github.com/dt-12345) for the symbols,
+ - Thankyou [Dt](https://github.com/dt-12345) for the symbols and for all the help u gave me,
  - Thankyou [Shadow](https://github.com/shadowninja108/) for exlaunch.
 
 
